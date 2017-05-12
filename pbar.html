@@ -1,0 +1,91 @@
+<!Doctype html>
+<html>
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <style>
+      #pbar {
+        width:80%;
+        height:50px;
+        background-color: grey;
+      }
+      img{
+        margin-left:-3%;
+        width:70px;
+        height:90%;
+        margin-bottom:2px;
+        position:relative;
+      }
+      #bar{
+        width:0;
+        height:50px;
+        background-color: white;
+        text-align: center;
+        color:white;
+        padding:5px;
+      }
+      #buttons{
+        margin:10px;
+        padding:30px;
+      }
+      .buttonss{
+        margin:30px;
+      }
+      #wholeArea{
+        margin-left: 15%;
+        margin-top:10%;
+      }
+      .rotate90 {
+    -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    transform: rotate(90deg);
+}
+    </style>
+  </head>
+  <body>
+    <div id = "wholeArea">
+    <div id = "buttons">
+      <button class = "buttonss .btn .btn-primary" value = "0">Decrease to   0%</button>
+      <button class = "buttonss .btn .btn-primary" value = "25">Increse to 25%</button>
+      <button class = "buttonss .btn .btn-primary" value = "50">Increse to 50%</button>
+      <button class = "buttonss .btn .btn-primary" value = "75">Increse to 75%</button>
+      <button class = "buttonss .btn .btn-primary" value = "100">Increse to 100%</button>
+    </div>
+    <div id = "pbar" class = "progress">
+      <img src = "rocket2.png" class="rotate90"/>
+      <div id = "bar" class="progress-bar progress-bar-striped active" role="progressbar">
+      </div>
+    </div>
+  </div>
+    <script>
+    var width = 1;    // calcualtes the width of the corresponding button clicked
+    var image = $("img")
+      var progressBar = $("#bar");
+      let progressButtons = $(".buttonss");
+
+      progressButtons.on("click",function(){
+      if(parseInt(this.value) == 0){          //this if condition checks if the zero button is clicked, the image returns to the starting of the bar.
+        progressBar.css("width",-3+"%")
+        console.log(image.css("marginLeft"))
+        image.css("marginLeft",-3+"%")
+      }
+      else{
+      width = parseInt(this.value);    //width takes the value of the corresponding button clicked.
+      progressBar.css("width",width+"%")
+      image.css("marginLeft",width-(width/0.92395)+"%")    // Since the width adds the
+      for(i = 0;i<progressButtons.length;i++){
+        if(progressButtons[i].value <= width){
+          $(progressButtons[i]).html("Decrease to"+progressButtons[i].value+"%")
+        }
+        if(progressButtons[i].value > width){
+          $(progressButtons[i]).html("Increase to"+progressButtons[i].value+"%")
+        }
+      }
+    }
+
+      })
+    </script>
+  </body>
+</html>
