@@ -6,20 +6,14 @@
     <style>
       #pbar {
         width:80%;
-        height:50px;
+        height:30px;
         background-color: grey;
       }
-      img{
-        margin-left:-3%;
-        width:70px;
-        height:90%;
-        margin-bottom:2px;
-        position:relative;
-      }
       #bar{
+        visibility: hidden;
         width:0;
         height:50px;
-        background-color: white;
+        background-color: green;
         text-align: center;
         color:white;
         padding:5px;
@@ -42,6 +36,16 @@
     -ms-transform: rotate(90deg);
     transform: rotate(90deg);
 }
+#block{
+  width:30px;
+  margin-top:-9px;
+  height:100%;
+  background-color: black;
+  margin-left: -3%;
+  position:relative;
+  border-radius:30%;
+  visibility: hidden;
+}
     </style>
   </head>
   <body>
@@ -54,27 +58,34 @@
       <button class = "buttonss .btn .btn-primary" value = "100">Increse to 100%</button>
     </div>
     <div id = "pbar" class = "progress">
-      <img src = "rocket2.png" class="rotate90"/>
       <div id = "bar" class="progress-bar progress-bar-striped active" role="progressbar">
+        <div id = "block"></div>
       </div>
     </div>
   </div>
     <script>
     var width = 1;    // calcualtes the width of the corresponding button clicked
-    var image = $("img")
-      var progressBar = $("#bar");
-      let progressButtons = $(".buttonss");
+    var fullWidth = $("#pbar").css("width")
+    var image = $("#block")
+    var progressBar = $("#bar");
+    let progressButtons = $(".buttonss");
 
-      progressButtons.on("click",function(){
-      if(parseInt(this.value) == 0){          //this if condition checks if the zero button is clicked, the image returns to the starting of the bar.
-        progressBar.css("width",-3+"%")
-        console.log(image.css("marginLeft"))
-        image.css("marginLeft",-3+"%")
-      }
-      else{
+    progressButtons.on("click",function(){
+
+    if(parseInt(this.value) === 0){          //this if condition checks if the zero button is clicked, the image returns to the starting of the bar.
+      progressBar.css("visibility","hidden")
+      image.css("visibility","hidden")
+    }
+
+    else{
+      progressBar.css("visibility","visible")
+      image.css("visibility","visible")
       width = parseInt(this.value);    //width takes the value of the corresponding button clicked.
+      var pbarWidth = progressBar.css("width")
+
       progressBar.css("width",width+"%")
-      image.css("marginLeft",width-(width/0.92395)+"%")    // Since the width adds the
+      console.log(pbarWidth)
+      image.css("marginLeft",98+"%")    // Since the width adds the
       for(i = 0;i<progressButtons.length;i++){
         if(progressButtons[i].value <= width){
           $(progressButtons[i]).html("Decrease to"+progressButtons[i].value+"%")
